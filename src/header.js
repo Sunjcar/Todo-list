@@ -9,7 +9,7 @@ const header = () => {
     
     const headText = document.createElement('div');
     headText.classList.add('head-text');
-    headText.textContent = 'TO-DO List';
+    headText.textContent = 'To-Do List';
 
     document.body.appendChild(header);
     header.appendChild(span);

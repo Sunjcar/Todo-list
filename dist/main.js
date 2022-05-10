@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/DomCreation.js":
-/*!****************************!*\
-  !*** ./src/DomCreation.js ***!
-  \****************************/
+/***/ "./src/header.js":
+/*!***********************!*\
+  !*** ./src/header.js ***!
+  \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst header = () => {\n    //Creates Header Elements \n    const header = document.createElement('div');\n    header.classList.add('header');\n\n    const span = document.createElement('span');\n    span.classList.add(\"material-symbols-outlined\");\n    span.textContent = 'event_avilable'\n    \n    const headText = document.createElement('div');\n    headText.classList.add('head-text');\n    headText.textContent = 'TO-DO List';\n\n    document.body.appendChild(header);\n    header.appendChild(span);\n    header.appendChild(headText);\n\n}; header();\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (header);\n\n//# sourceURL=webpack://todo-list/./src/DomCreation.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst header = () => {\n    //Creates Header Elements \n    const header = document.createElement('div');\n    header.classList.add('header');\n\n    const span = document.createElement('span');\n    span.classList.add(\"material-symbols-outlined\");\n    span.textContent = 'event_avilable'\n    \n    const headText = document.createElement('div');\n    headText.classList.add('head-text');\n    headText.textContent = 'To-Do List';\n\n    document.body.appendChild(header);\n    header.appendChild(span);\n    header.appendChild(headText);\n\n}; header();\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (header);\n\n//# sourceURL=webpack://todo-list/./src/header.js?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _DomCreation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DomCreation */ \"./src/DomCreation.js\");\n\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header */ \"./src/header.js\");\n\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
 
 /***/ })
 
