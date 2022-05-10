@@ -3,11 +3,15 @@
     padding:0;
 }
 
+body{
+    height: 100vh;
+}
 .header{
     display:flex;
     background-color: #075985;
     align-items: center;
     padding: 3rem;
+    grid-area:header
 }
 
 .header .material-symbols-outlined{
@@ -18,4 +22,23 @@
 .head-text{
     font-family: 'Libre Baskerville', serif;
     font-size:3rem;
+}
+
+.sidebar{
+    grid-area: sidebar;
+    background-color: #e0f2fe;
+    width: 15vw;
+    height: 78vh;
+    padding:2rem;
+}
+
+.content{
+    display:flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.today, .week, .projects{
+    font-family: 'Libre Baskerville', serif;
+    font-size:1.6rem;
 }
