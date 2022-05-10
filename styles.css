@@ -1,0 +1,21 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+.header{
+    display:flex;
+    background-color: #075985;
+    align-items: center;
+    padding: 3rem;
+}
+
+.header .material-symbols-outlined{
+   font-size:3rem;
+   width:4rem;
+}
+
+.head-text{
+    font-family: 'Libre Baskerville', serif;
+    font-size:3rem;
+}
