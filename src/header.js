@@ -15,6 +15,6 @@ const header = () => {
     header.appendChild(span);
     header.appendChild(headText);
 
-}; header();
+}; 
 
 export default header

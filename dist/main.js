@@ -16,7 +16,7 @@
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst header = () => {\n    //Creates Header Elements \n    const header = document.createElement('div');\n    header.classList.add('header');\n\n    const span = document.createElement('span');\n    span.classList.add(\"material-symbols-outlined\");\n    span.textContent = 'event_avilable'\n    \n    const headText = document.createElement('div');\n    headText.classList.add('head-text');\n    headText.textContent = 'To-Do List';\n\n    document.body.appendChild(header);\n    header.appendChild(span);\n    header.appendChild(headText);\n\n}; header();\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (header);\n\n//# sourceURL=webpack://todo-list/./src/header.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst header = () => {\n    //Creates Header Elements \n    const header = document.createElement('div');\n    header.classList.add('header');\n\n    const span = document.createElement('span');\n    span.classList.add(\"material-symbols-outlined\");\n    span.textContent = 'event_avilable'\n    \n    const headText = document.createElement('div');\n    headText.classList.add('head-text');\n    headText.textContent = 'To-Do List';\n\n    document.body.appendChild(header);\n    header.appendChild(span);\n    header.appendChild(headText);\n\n}; \n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (header);\n\n//# sourceURL=webpack://todo-list/./src/header.js?");
 
 /***/ }),
 
@@ -26,7 +26,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header */ \"./src/header.js\");\n\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header */ \"./src/header.js\");\n/* harmony import */ var _sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sidebar */ \"./src/sidebar.js\");\n\n\n\n\nfunction render(){\n    (0,_header__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n    (0,_sidebar__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n}render();\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/sidebar.js":
+/*!************************!*\
+  !*** ./src/sidebar.js ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst sidebar = () => {\n    //Create Sidebar Elements\n    const sidebar = document.createElement('div');\n    sidebar.classList.add('sidebar');\n\n    const today = document.createElement('div');\n    today.classList.add('today');\n    today.textContent = 'Today'\n\n    const week = document.createElement('div');\n    week.classList.add('week');\n    week.textContent = 'Week'\n\n    const projects = document.createElement('div')\n    projects.textContent = 'Projects'\n\n    document.body.appendChild(sidebar);\n    sidebar.appendChild(today);\n    sidebar.appendChild(week);\n    sidebar.appendChild(projects);\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (sidebar);\n\n//# sourceURL=webpack://todo-list/./src/sidebar.js?");
 
 /***/ })
 
