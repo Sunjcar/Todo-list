@@ -11,6 +11,7 @@ const sidebar = () => {
     projectContent.classList.add('content')
     const addContent = document.createElement('div');
     addContent.classList.add('add-content')
+    addContent.setAttribute('id', 'add-project')
     //Content
     const today = document.createElement('div');
     today.classList.add('today');
