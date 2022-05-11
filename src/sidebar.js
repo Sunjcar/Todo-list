@@ -9,7 +9,8 @@ const sidebar = () => {
     weekContent.classList.add('content')
     const projectContent = document.createElement('div')
     projectContent.classList.add('content')
-
+    const addContent = document.createElement('div');
+    addContent.classList.add('add-content')
     //Content
     const today = document.createElement('div');
     today.classList.add('today');
@@ -36,16 +37,28 @@ const sidebar = () => {
     projectsIcon.classList.add("material-symbols-outlined")
     projectsIcon.textContent = 'receipt_long'
 
+    const addIcon = document.createElement('span')
+    addIcon.classList.add("material-symbols-outlined")
+    addIcon.textContent = 'add'
+
+    const addproject = document.createElement('div')
+    addproject.classList.add('add-project')
+    addproject.textContent = "Add Project"
+
     document.body.appendChild(sidebar);
     sidebar.appendChild(dayContent);
     sidebar.appendChild(weekContent);
-    sidebar.appendChild(projectContent)
+    sidebar.appendChild(projectContent);
+    sidebar.appendChild(addContent)
     dayContent.appendChild(todayIcon);
     dayContent.appendChild(today);
     weekContent.appendChild(weekIcon);
     weekContent.appendChild(week);
     projectContent.appendChild(projectsIcon);
     projectContent.appendChild(projects);
+    addContent.appendChild(addIcon)
+    addContent.appendChild(addproject)
+
 }
 
 export default sidebar
