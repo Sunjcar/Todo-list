@@ -27,18 +27,27 @@ body{
 .sidebar{
     grid-area: sidebar;
     background-color: #e0f2fe;
-    width: 15vw;
+    width: 17vw;
     height: 78vh;
     padding:2rem;
+
 }
 
 .content{
     display:flex;
     align-items: center;
     gap: 1rem;
+    margin-top: 1rem;
 }
 
 .today, .week, .projects{
     font-family: 'Libre Baskerville', serif;
     font-size:1.6rem;
+}
+
+.add-content{
+    display:flex;
+    align-items: center;
+    gap:1rem;
+    margin-top:.4rem;
 }
