@@ -19,9 +19,8 @@ const modal = () => {
 
     const add = document.createElement('button')
     add.classList.add('addBtn')
-    add.setAttribute('type', 'button')
     add.textContent = "Add"
-    
+
     const cancel = document.createElement('button')
     cancel.classList.add('cancelBtn')
     cancel.setAttribute('type', 'button')

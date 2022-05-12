@@ -1,5 +1,7 @@
 const sidebar = () => {
     //Create Sidebar Elements
+    const main = document.createElement('div')
+    main.setAttribute('id', 'main')
     const sidebar = document.createElement('div');
     sidebar.classList.add('sidebar');
     //Container for styling
@@ -9,6 +11,7 @@ const sidebar = () => {
     weekContent.classList.add('content')
     const projectContent = document.createElement('div')
     projectContent.classList.add('content')
+    
     const addContent = document.createElement('div');
     addContent.classList.add('add-content')
     addContent.setAttribute('id', 'add-project')
@@ -34,10 +37,6 @@ const sidebar = () => {
     projects.classList.add('projects')
     projects.textContent = 'Projects'
 
-    const projectsIcon = document.createElement('span');
-    projectsIcon.classList.add("material-symbols-outlined")
-    projectsIcon.textContent = 'receipt_long'
-
     const addIcon = document.createElement('span')
     addIcon.classList.add("material-symbols-outlined")
     addIcon.textContent = 'add'
@@ -46,7 +45,8 @@ const sidebar = () => {
     addproject.classList.add('add-project')
     addproject.textContent = "Add Project"
 
-    document.body.appendChild(sidebar);
+    document.body.appendChild(main);
+    main.appendChild(sidebar);
     sidebar.appendChild(dayContent);
     sidebar.appendChild(weekContent);
     sidebar.appendChild(projectContent);
@@ -55,7 +55,7 @@ const sidebar = () => {
     dayContent.appendChild(today);
     weekContent.appendChild(weekIcon);
     weekContent.appendChild(week);
-    projectContent.appendChild(projectsIcon);
+ 
     projectContent.appendChild(projects);
     addContent.appendChild(addIcon)
     addContent.appendChild(addproject)

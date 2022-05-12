@@ -5,6 +5,7 @@
 
 body{
     height: 100vh;
+   
 }
 .header{
     display:flex;
@@ -24,6 +25,10 @@ body{
     font-size:3rem;
 }
 
+#main {
+    display:flex;
+}
+
 .sidebar{
     grid-area: sidebar;
     background-color: #e0f2fe;
@@ -40,17 +45,36 @@ body{
     margin-top: 1rem;
 }
 
+
 .today, .week, .projects{
     font-family: 'Libre Baskerville', serif;
     font-size:1.6rem;
+    display:flex;
+    flex-direction: column;
 }
 
+.project-list{
+    display:flex;
+    align-items: center;
+    font-size:.8rem;
+    gap:1rem;
+
+}
 .add-content{
     display:flex;
     align-items: center;
     gap:1rem;
     margin-top:.4rem;
     cursor: pointer;
+}
+
+
+.view-project{
+    grid-area: project;
+    width:83vw; 
+    margin:0 auto;
+    padding:6rem;
+    text-align: center;
 }
 
 .modal {

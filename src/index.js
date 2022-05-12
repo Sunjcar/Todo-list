@@ -2,18 +2,19 @@ import header from './header'
 import sidebar from './sidebar'
 import modal from './modal'
 import display from './displayModal'
+import projects from './projects'
+import createProject from './task'
 
 
-//Cache Dom
-const addproject = document.querySelector('.add-content')
-const moda = document.getElementById('modal');
 
 
 function render(){
     header();
     sidebar();
+    projects();
     modal();
     display();
+    createProject();
 }render();
 
 
