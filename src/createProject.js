@@ -6,9 +6,18 @@ const createProject = () => {
         const name = document.querySelector('.project-name');
         const modal = document.getElementById('modal')
         const project = document.querySelector('.projects')
+        const view = document.querySelector('.view-project');
+        const addtasks = document.createElement('p');
+        addtasks.classList.add('tasks');
+        addtasks.textContent = '+ Add Task'
+        addtasks.style.display = 'none'
+        view.appendChild(addtasks);
         //Bind Events
         add.addEventListener('click', (e) => {
-         
+            if(input.value === ''){
+                alert("Must Enter Name For Project")
+                return;
+            };
             const div =document.createElement('div')
             div.classList.add('project-list');
             project.appendChild(div)
@@ -23,19 +32,11 @@ const createProject = () => {
             div.appendChild(text);
  
             name.textContent = input.value
-            if(input.value === ''){
-                projectsIcon.textContent = ''
-                alert("Must Enter Name For Project")
-            };
-
-            const addtasks = document.createElement('p');
-            addtasks.classList.add('tasks');
-            addtasks.textContent = '+ Add Task'
-            name.appendChild(addtasks);
             
-            modal.style.display = 'none'
+            modal.style.display = 'none';
+            addtasks.style.display = 'block'
             e.preventDefault();
-        }, false);      
+        }, false);
 }
 
 export default createProject

@@ -3,7 +3,8 @@ import sidebar from './sidebar'
 import modal from './modal'
 import display from './displayModal'
 import projects from './projects'
-import createProject from './task'
+import createProject from './createProject'
+import createTask from './tasks'
 
 
 
@@ -15,6 +16,7 @@ function render(){
     modal();
     display();
     createProject();
+    createTask();
 }render();
 
 
