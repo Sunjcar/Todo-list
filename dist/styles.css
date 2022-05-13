@@ -77,6 +77,12 @@ body{
     text-align: center;
 }
 
+.tasks{
+    margin-top: 1rem;
+    font-size: medium;
+    cursor: pointer;
+}
+
 .modal {
     display: none;
     position: fixed; 
@@ -115,4 +121,9 @@ button{
 
 .cancelBtn{
     background-color: lightpink;
+}
+
+.tasks:hover, .add-content:hover {
+    background-color: #888;
+    border-radius: 1rem;
 }

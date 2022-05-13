@@ -1,5 +1,3 @@
-
-
 const createProject = () => {
     
         //Cache Dom
@@ -8,10 +6,9 @@ const createProject = () => {
         const name = document.querySelector('.project-name');
         const modal = document.getElementById('modal')
         const project = document.querySelector('.projects')
-        
         //Bind Events
         add.addEventListener('click', (e) => {
-            
+         
             const div =document.createElement('div')
             div.classList.add('project-list');
             project.appendChild(div)
@@ -24,20 +21,21 @@ const createProject = () => {
             const text = document.createElement('p');
             text.textContent = input.value
             div.appendChild(text);
-
-
+ 
             name.textContent = input.value
             if(input.value === ''){
                 projectsIcon.textContent = ''
                 alert("Must Enter Name For Project")
-            }
-        
+            };
+
+            const addtasks = document.createElement('p');
+            addtasks.classList.add('tasks');
+            addtasks.textContent = '+ Add Task'
+            name.appendChild(addtasks);
+            
             modal.style.display = 'none'
             e.preventDefault();
-        }, false);
-
+        }, false);      
 }
 
 export default createProject
-
-
