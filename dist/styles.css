@@ -32,7 +32,7 @@ body{
 .sidebar{
     grid-area: sidebar;
     background-color: #e0f2fe;
-    width: 17vw;
+    width: 20vw;
     height: 78vh;
     padding:2rem;
 
@@ -83,18 +83,28 @@ body{
     cursor: pointer;
 }
 
+.task-bar{
+    display:flex;
+    align-items: center;
+    justify-content: space-evenly
+}
+
+.left-task{
+    display:flex;
+    align-items: center;
+    gap:2rem;
+}
+
+.left-task .material-symbols-outlined, .left-task #task, .right-task .date{
+    cursor: pointer;
+}
+
 .task-text{
     width:22rem;
     margin-top: 1rem;
     border-radius: 1rem;
 }
 
-#task{
-    padding:.8rem;
-    margin-top: 1rem;
-    border:1px solid black;
-    border-radius:1rem;
-}
 
 .modal {
     display: none;

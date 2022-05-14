@@ -16,7 +16,7 @@ const createProject = () => {
         add.addEventListener('click', (e) => {
             if(input.value === ''){
                 alert("Must Enter Name For Project")
-                return;
+                return
             };
             const div =document.createElement('div')
             div.classList.add('project-list');
