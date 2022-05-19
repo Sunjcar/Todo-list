@@ -54,12 +54,30 @@ body{
 }
 
 .project-list{
-    display:flex;
-    align-items: center;
     font-size:.8rem;
     gap:1rem;
-
 }
+
+.lists{
+    display:flex;
+    gap:2rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    
+}
+
+.left-list{
+    display:flex;
+}
+.right-list li{
+    list-style-type: none;
+}
+.right-list{
+    display:flex;
+    gap: 1rem;
+    align-items: center;
+}
+
 .add-content{
     display:flex;
     align-items: center;
@@ -68,34 +86,43 @@ body{
     cursor: pointer;
 }
 
-
+p{
+    cursor: pointer;
+}
 .view-project{
-    grid-area: project;
-    width:83vw; 
-    margin:0 auto;
-    padding:6rem;
+    width: 600px;
+    padding: 20px 40px;
+    margin: 0 auto;
     text-align: center;
 }
 
 .tasks{
+    display:flex;
+    flex-direction:column;
     margin-top: 1rem;
     font-size: medium;
     cursor: pointer;
 }
 
-.task-bar{
+
+.task-input{
+    border-radius: 1rem;
+    width:20rem;
+    height:3rem;
+}
+.task-lists{
     display:flex;
-    align-items: center;
-    justify-content: space-evenly
+    justify-content: space-between;
 }
 
 .left-task{
     display:flex;
     align-items: center;
     gap:2rem;
+    width:20vw;
 }
 
-.left-task .material-symbols-outlined, .left-task #task, .right-task .date{
+.task .material-symbols-outlined{
     cursor: pointer;
 }
 
@@ -136,6 +163,7 @@ button{
     width:11rem;
     padding:10px;
     border-radius: .7rem;
+    background-color: lightpink;
 }
 
 .addBtn{
@@ -149,7 +177,11 @@ button{
 button:hover{
     filter:brightness(1.3);
 }
-.tasks:hover, .add-content:hover {
-    background-color: #888;
-    border-radius: 1rem;
+.task-lists:hover, .add-content:hover, .lists:hover {
+    background-color: #e2e8f0;
+    
+}
+
+.active{
+color: red;
 }

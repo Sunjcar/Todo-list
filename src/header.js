@@ -5,7 +5,7 @@ const header = () => {
 
     const span = document.createElement('span');
     span.classList.add("material-symbols-outlined");
-    span.textContent = 'event_avilable'
+    span.textContent = 'edit_calendar'
     
     const headText = document.createElement('div');
     headText.classList.add('head-text');

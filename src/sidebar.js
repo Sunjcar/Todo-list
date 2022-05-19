@@ -37,6 +37,9 @@ const sidebar = () => {
     projects.classList.add('projects')
     projects.textContent = 'Projects'
 
+    const projectLists = document.createElement('div')
+    projectLists.classList.add('project-list')
+
     const addIcon = document.createElement('span')
     addIcon.classList.add("material-symbols-outlined")
     addIcon.textContent = 'add'
@@ -55,7 +58,7 @@ const sidebar = () => {
     dayContent.appendChild(today);
     weekContent.appendChild(weekIcon);
     weekContent.appendChild(week);
- 
+    projects.appendChild(projectLists)
     projectContent.appendChild(projects);
     addContent.appendChild(addIcon)
     addContent.appendChild(addproject)

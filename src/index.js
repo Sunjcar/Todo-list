@@ -1,22 +1,15 @@
 import header from './header'
 import sidebar from './sidebar'
-import modal from './modal'
-import display from './displayModal'
-import projects from './projects'
+import {projectTask,modal} from './projects'
 import createProject from './createProject'
-import createTask from './tasks'
 
 
-
-
-function render(){
+function renderModules(){
     header();
     sidebar();
-    projects();
+    projectTask();
     modal();
-    display();
     createProject();
-    createTask();
-}render();
+}renderModules();
 
 
