@@ -1,8 +1,7 @@
 
 
 const modal = () => {
-    //Cache Dom
-        
+    //Creat Dom For Projects     
     const modal = document.createElement('div')
     modal.classList.add('modal')
     modal.setAttribute('id', 'modal')
@@ -18,11 +17,13 @@ const modal = () => {
     titleInput.setAttribute('type', 'text')
     titleInput.setAttribute('id', 'title')
     
-    //Create Elements
+    //Append Elements
     document.body.appendChild(modal)
     modal.appendChild(modalContent);
     modalContent.appendChild(form)
     form.appendChild(titleInput);
+
+   
 };    
 const projectTask = () => {
    

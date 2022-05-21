@@ -11,24 +11,35 @@ const sidebar = () => {
     weekContent.classList.add('content')
     const projectContent = document.createElement('div')
     projectContent.classList.add('content')
-    
     const addContent = document.createElement('div');
     addContent.classList.add('add-content')
     addContent.setAttribute('id', 'add-project')
     //Content
+    const todayContent = document.createElement('div')
+    todayContent.classList.add('today-content')
     const today = document.createElement('div');
     today.classList.add('today');
     today.textContent = 'Today'
-
     const todayIcon = document.createElement('span');
     todayIcon.classList.add("material-symbols-outlined")
     todayIcon.textContent = 'calendar_today'
+    const todayContainer = document.createElement('div')
+    todayContainer.classList.add('today-list')
+
+    //Creat Dom For Today   
+    const todayCreator = document.createElement('div') 
+    todayCreator.classList.add('today-creator') 
+    const todayForm = document.createElement('form')
+    todayForm.classList.add('todayForm')
+    const todayInput = document.createElement('input')
+    todayInput.classList.add('today-input')
+    todayInput.style.display = 'none'
 
     const week = document.createElement('div');
     week.classList.add('week');
     week.textContent = 'Week'
 
-    
+
     const weekIcon = document.createElement('span');
     weekIcon.classList.add("material-symbols-outlined")
     weekIcon.textContent = 'date_range'
@@ -54,8 +65,13 @@ const sidebar = () => {
     sidebar.appendChild(weekContent);
     sidebar.appendChild(projectContent);
     sidebar.appendChild(addContent)
-    dayContent.appendChild(todayIcon);
-    dayContent.appendChild(today);
+    dayContent.appendChild(todayContent)
+    todayContent.appendChild(todayIcon);
+    todayContent.appendChild(today);
+    today.appendChild(todayContainer)
+    today.appendChild(todayCreator)
+    todayCreator.appendChild(todayForm)
+    todayForm.appendChild(todayInput)
     weekContent.appendChild(weekIcon);
     weekContent.appendChild(week);
     projects.appendChild(projectLists)

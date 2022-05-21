@@ -45,6 +45,11 @@ body{
     margin-top: 1rem;
 }
 
+.today-content, .week-content{
+    display:flex;
+    gap:1rem;
+    cursor: pointer;
+}
 
 .today, .week, .projects{
     font-family: 'Libre Baskerville', serif;
@@ -53,7 +58,7 @@ body{
     flex-direction: column;
 }
 
-.project-list{
+.project-list, .today-list, .week-list{
     font-size:.8rem;
     gap:1rem;
 }

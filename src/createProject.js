@@ -1,6 +1,3 @@
-import sidebar from "./sidebar"
-import { projectTask,modal } from "./projects"
-
 const createProject = () => {
     //Cache Dom
     const ProjectContainer = document.querySelector('.project-list')
@@ -16,7 +13,11 @@ const createProject = () => {
     const newTaskInput = document.querySelector('.new-task')
     const addContent = document.querySelector('.add-content')
     const clearCompleteTasksButton = document.querySelector('.delete')
-   
+    const todayContent = document.querySelector('.today-content')
+    const todayContainer = document.querySelector('.today-list')
+    const newTodayForm = document.querySelector('.todayForm')
+    const newTodayInput = document.querySelector('.today-input')
+
 
     clearCompleteTasksButton.style.display = 'none'
     newTaskInput.style.display = 'none'
@@ -24,10 +25,17 @@ const createProject = () => {
     //Saves Data to local storage
     const LOCAL_STORAGE_LIST_KEY = 'task.lists'
     const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId'
+    const LOCAL_STORAGE_TODAY_LIST_KEY = 'today.lists'
     let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []
     let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY)
+    let todaylists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODAY_LIST_KEY)) || []
 
     //Bind Events
+    todayContent.addEventListener('click', () => {
+        newTodayInput.style.display = 'inline'
+        todayContainer.style.display = 'inline'
+    })
+
     ProjectContainer.addEventListener('click', e => {
         if (e.target.tagName.toLowerCase() === 'li') {
         selectedListId = e.target.dataset.listId
@@ -50,6 +58,16 @@ const createProject = () => {
         saveAndRender()
     })
     
+    newTodayForm.addEventListener('submit', e => {
+        e.preventDefault()
+        newTodayInput.style.display = 'none'
+        const listName = newTodayInput.value
+        if (listName == null || listName === '') return
+        const list = createList(listName)
+        newTodayInput.value = null
+        todaylists.push(list)
+        saveAndRenderToday()
+    })
     
     newProjectForm.addEventListener('submit', e => {
         e.preventDefault()
@@ -88,7 +106,11 @@ const createProject = () => {
     function createTask(name) {
         return { id: Date.now().toString(), name: name}
     }
-    
+    function saveAndRenderToday(){
+        save()
+        renderToday()
+    }
+
     function saveAndRender() {
         save()
         render()
@@ -97,6 +119,28 @@ const createProject = () => {
     function save() {
         localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists))
         localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId)
+        localStorage.setItem(LOCAL_STORAGE_TODAY_LIST_KEY, JSON.stringify(todaylists))
+    }
+
+    function renderToday (){
+        clearElement(todayContainer)
+        renderTodayLists()
+    
+        const selectedList = todaylists.find(list => list.id === selectedListId)
+        if (selectedListId == null) {
+        listDisplayContainer.style.display = 'none'
+        listTitleElement.textContent = 'Tasks'
+        newTaskInput.style.display = 'none'
+        clearCompleteTasksButton.style.display = 'none'
+        } else {
+        listDisplayContainer.style.display = ''
+        listTitleElement.innerText = selectedList.name
+        newTaskInput.style.display = 'inline'
+        clearCompleteTasksButton.style.display = 'inline'
+        tasksContainer.style.display = 'inline'
+        clearElement(tasksContainer)
+        renderTasks(selectedList)
+        }
     }
     
     function render() {
@@ -152,6 +196,55 @@ const createProject = () => {
         })
     }
 
+    function renderTodayLists() {
+        todaylists.forEach(list => {
+        const today = document.createElement('div')
+        today.classList.add('lists')
+        todayContainer.appendChild(today)
+        const left = document.createElement('div')
+        left.classList.add('left-list')
+        const right = document.createElement('div')
+        right.classList.add('right-list')
+        today.appendChild(left)
+        today.appendChild(right)
+        const remove = document.createElement('span')
+        remove.classList.add('material-symbols-outlined')
+        remove.textContent = 'delete'
+        left.appendChild(remove)
+        remove.addEventListener('click', e => {
+            if (todaylists.length > 1) {
+            todaylists.splice(todaylists.indexOf(list), 1);
+            saveAndRenderToday()
+            newTaskInput.style.display = 'none'
+            clearCompleteTasksButton.style.display = 'none'
+            tasksContainer.style.display = 'none'
+            listCountElement.style.display = 'none'
+        } else if (todaylists.length === 1) {
+            todaylists = [];
+            todayContainer.textContent = ''
+            listTitleElement.textContent = 'Tasks'
+            newTaskInput.style.display = 'none'
+            clearCompleteTasksButton.style.display = 'none'
+            tasksContainer.style.display = 'none'
+            listCountElement.style.display = 'none'
+            saveAndRenderToday();
+        }
+        })
+        
+        const icon = document.createElement('span')
+        icon.classList.add('material-symbols-outlined')
+        icon.textContent = 'receipt_long'
+        const listElement = document.createElement('li')
+        listElement.dataset.listId = list.id
+        listElement.classList.add("list")
+        listElement.textContent = list.name
+        if (list.id === selectedListId) {
+            listElement.classList.add('active')
+        }
+        right.appendChild(icon)
+        right.appendChild(listElement)
+        })
+    }
     
     function renderLists() {
         lists.forEach(list => {
