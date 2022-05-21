@@ -17,7 +17,10 @@ const createProject = () => {
     const todayContainer = document.querySelector('.today-list')
     const newTodayForm = document.querySelector('.todayForm')
     const newTodayInput = document.querySelector('.today-input')
-
+    const weekContent = document.querySelector('.week-content')
+    const weekContainer = document.querySelector('.week-list')
+    const newWeekForm = document.querySelector('.weekForm')
+    const newWeekInput = document.querySelector('.week-input')
 
     clearCompleteTasksButton.style.display = 'none'
     newTaskInput.style.display = 'none'
@@ -26,20 +29,36 @@ const createProject = () => {
     const LOCAL_STORAGE_LIST_KEY = 'task.lists'
     const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId'
     const LOCAL_STORAGE_TODAY_LIST_KEY = 'today.lists'
+    const LOCAL_STORAGE_WEEK_LIST_KEY = 'week.lists'
     let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []
     let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY)
     let todaylists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODAY_LIST_KEY)) || []
+    let weeklists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_WEEK_LIST_KEY)) || []
 
     //Bind Events
     todayContent.addEventListener('click', () => {
         newTodayInput.style.display = 'inline'
-        todayContainer.style.display = 'inline'
+        newWeekInput.style.display = 'none'
     })
+
+    todayContainer.addEventListener('click', e => {
+        if (e.target.tagName.toLowerCase() === 'li') {
+        selectedListId = e.target.dataset.listId
+        saveAndRenderToday()
+        }
+    })
+
+    weekContent.addEventListener('click', () => {
+        newWeekInput.style.display = 'inline'
+        newTodayInput.style.display = 'none'
+    })
+
 
     ProjectContainer.addEventListener('click', e => {
         if (e.target.tagName.toLowerCase() === 'li') {
         selectedListId = e.target.dataset.listId
         saveAndRender()
+        tasksContainer.style.display = 'inline'
         }
     })
     
@@ -67,6 +86,17 @@ const createProject = () => {
         newTodayInput.value = null
         todaylists.push(list)
         saveAndRenderToday()
+    })
+
+    newWeekForm.addEventListener('submit', e => {
+        e.preventDefault()
+        newWeekInput.style.display = 'none'
+        const listName = newWeekInput.value
+        if (listName == null || listName === '') return
+        const list = createList(listName)
+        newWeekInput.value = null
+        weeklists.push(list)
+        saveAndRenderWeek()
     })
     
     newProjectForm.addEventListener('submit', e => {
@@ -111,6 +141,11 @@ const createProject = () => {
         renderToday()
     }
 
+    function saveAndRenderWeek(){
+        save()
+        renderWeek()
+    }
+
     function saveAndRender() {
         save()
         render()
@@ -120,6 +155,7 @@ const createProject = () => {
         localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists))
         localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId)
         localStorage.setItem(LOCAL_STORAGE_TODAY_LIST_KEY, JSON.stringify(todaylists))
+        localStorage.setItem(LOCAL_STORAGE_WEEK_LIST_KEY, JSON.stringify(weeklists))
     }
 
     function renderToday (){
@@ -127,6 +163,27 @@ const createProject = () => {
         renderTodayLists()
     
         const selectedList = todaylists.find(list => list.id === selectedListId)
+        if (selectedListId == null) {
+        listDisplayContainer.style.display = 'none'
+        listTitleElement.textContent = 'Tasks'
+        newTaskInput.style.display = 'none'
+        clearCompleteTasksButton.style.display = 'none'
+        } else {
+        listDisplayContainer.style.display = ''
+        listTitleElement.innerText = selectedList.name
+        newTaskInput.style.display = 'inline'
+        clearCompleteTasksButton.style.display = 'inline'
+        tasksContainer.style.display = 'inline'
+        clearElement(tasksContainer)
+        renderTasks(selectedList)
+        }
+    }
+
+    function renderWeek (){
+        clearElement(weekContainer)
+        renderWeekLists()
+    
+        const selectedList = weeklists.find(list => list.id === selectedListId)
         if (selectedListId == null) {
         listDisplayContainer.style.display = 'none'
         listTitleElement.textContent = 'Tasks'
@@ -226,7 +283,6 @@ const createProject = () => {
             newTaskInput.style.display = 'none'
             clearCompleteTasksButton.style.display = 'none'
             tasksContainer.style.display = 'none'
-            listCountElement.style.display = 'none'
             saveAndRenderToday();
         }
         })
@@ -246,6 +302,56 @@ const createProject = () => {
         })
     }
     
+    function renderWeekLists() {
+        weeklists.forEach(list => {
+        const week = document.createElement('div')
+        week.classList.add('lists')
+        weekContainer.appendChild(week)
+        const left = document.createElement('div')
+        left.classList.add('left-list')
+        const right = document.createElement('div')
+        right.classList.add('right-list')
+        week.appendChild(left)
+        week.appendChild(right)
+        const remove = document.createElement('span')
+        remove.classList.add('material-symbols-outlined')
+        remove.textContent = 'delete'
+        left.appendChild(remove)
+        remove.addEventListener('click', e => {
+            if (weeklists.length > 1) {
+            weeklists.splice(weeklists.indexOf(list), 1);
+            saveAndRenderWeek()
+            newTaskInput.style.display = 'none'
+            clearCompleteTasksButton.style.display = 'none'
+            tasksContainer.style.display = 'none'
+            listCountElement.style.display = 'none'
+        } else if (weeklists.length === 1) {
+            weeklists = [];
+            weekContainer.textContent = ''
+            listTitleElement.textContent = 'Tasks'
+            newTaskInput.style.display = 'none'
+            clearCompleteTasksButton.style.display = 'none'
+            tasksContainer.style.display = 'none'
+            saveAndRenderWeek();
+        }
+        })
+        
+        const icon = document.createElement('span')
+        icon.classList.add('material-symbols-outlined')
+        icon.textContent = 'receipt_long'
+        const listElement = document.createElement('li')
+        listElement.dataset.listId = list.id
+        listElement.classList.add("list")
+        listElement.textContent = list.name
+        if (list.id === selectedListId) {
+            listElement.classList.add('active')
+        }
+        right.appendChild(icon)
+        right.appendChild(listElement)
+        })
+
+    }    
+
     function renderLists() {
         lists.forEach(list => {
         const project = document.createElement('div')

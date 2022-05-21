@@ -47,8 +47,7 @@ body{
 
 .today-content, .week-content{
     display:flex;
-    gap:1rem;
-    cursor: pointer;
+    gap: 1rem;
 }
 
 .today, .week, .projects{
@@ -56,6 +55,7 @@ body{
     font-size:1.6rem;
     display:flex;
     flex-direction: column;
+    cursor: pointer;
 }
 
 .project-list, .today-list, .week-list{

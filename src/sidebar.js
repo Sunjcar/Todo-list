@@ -7,14 +7,15 @@ const sidebar = () => {
     //Container for styling
     const dayContent = document.createElement('div')
     dayContent.classList.add('content')
-    const weekContent = document.createElement('div')
-    weekContent.classList.add('content')
+    const weekCon = document.createElement('div')
+    weekCon.classList.add('content')
     const projectContent = document.createElement('div')
     projectContent.classList.add('content')
     const addContent = document.createElement('div');
     addContent.classList.add('add-content')
     addContent.setAttribute('id', 'add-project')
-    //Content
+
+    //Creat Dom For Today 
     const todayContent = document.createElement('div')
     todayContent.classList.add('today-content')
     const today = document.createElement('div');
@@ -24,9 +25,7 @@ const sidebar = () => {
     todayIcon.classList.add("material-symbols-outlined")
     todayIcon.textContent = 'calendar_today'
     const todayContainer = document.createElement('div')
-    todayContainer.classList.add('today-list')
-
-    //Creat Dom For Today   
+    todayContainer.classList.add('today-list')  
     const todayCreator = document.createElement('div') 
     todayCreator.classList.add('today-creator') 
     const todayForm = document.createElement('form')
@@ -35,15 +34,27 @@ const sidebar = () => {
     todayInput.classList.add('today-input')
     todayInput.style.display = 'none'
 
-    const week = document.createElement('div');
+    //Create Dom for Week
+    const weekContent = document.createElement('div')
+    weekContent.classList.add('week-content')
+    const week = document.createElement('div')
     week.classList.add('week');
     week.textContent = 'Week'
-
-
     const weekIcon = document.createElement('span');
     weekIcon.classList.add("material-symbols-outlined")
     weekIcon.textContent = 'date_range'
+    const weekContainer = document.createElement('div')
+    weekContainer.classList.add('week-list')  
+    const weekCreator = document.createElement('div') 
+    weekCreator.classList.add('week-creator') 
+    const weekForm = document.createElement('form')
+    weekForm.classList.add('weekForm')
+    const weekInput = document.createElement('input')
+    weekInput.classList.add('week-input')
+    weekInput.style.display = 'none'
+    
 
+    //Create Dom for Projects
     const projects = document.createElement('div')
     projects.classList.add('projects')
     projects.textContent = 'Projects'
@@ -62,7 +73,7 @@ const sidebar = () => {
     document.body.appendChild(main);
     main.appendChild(sidebar);
     sidebar.appendChild(dayContent);
-    sidebar.appendChild(weekContent);
+    sidebar.appendChild(weekCon);
     sidebar.appendChild(projectContent);
     sidebar.appendChild(addContent)
     dayContent.appendChild(todayContent)
@@ -72,8 +83,15 @@ const sidebar = () => {
     today.appendChild(todayCreator)
     todayCreator.appendChild(todayForm)
     todayForm.appendChild(todayInput)
+    
+    weekCon.appendChild(weekContent)
     weekContent.appendChild(weekIcon);
-    weekContent.appendChild(week);
+    weekContent.appendChild(week)
+    week.appendChild(weekContainer)
+    week.appendChild(weekCreator)
+    weekCreator.appendChild(weekForm)
+    weekForm.appendChild(weekInput)
+    
     projects.appendChild(projectLists)
     projectContent.appendChild(projects);
     addContent.appendChild(addIcon)
