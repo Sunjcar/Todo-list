@@ -7,13 +7,17 @@ const sidebar = () => {
     //Container for styling
     const dayContent = document.createElement('div')
     dayContent.classList.add('content')
+    const addDay = document.createElement('div')
+    addDay.classList.add('add-today')
     const weekCon = document.createElement('div')
     weekCon.classList.add('content')
+    const addWeek = document.createElement('div')
+    addWeek.classList.add('add-week')
     const projectContent = document.createElement('div')
     projectContent.classList.add('content')
     const addContent = document.createElement('div');
     addContent.classList.add('add-content')
-    addContent.setAttribute('id', 'add-project')
+    
 
     //Creat Dom For Today 
     const todayContent = document.createElement('div')
@@ -21,18 +25,16 @@ const sidebar = () => {
     const today = document.createElement('div');
     today.classList.add('today');
     today.textContent = 'Today'
+    const todaylist = document.createElement('div')
+    todaylist.classList.add('today-list')
     const todayIcon = document.createElement('span');
     todayIcon.classList.add("material-symbols-outlined")
     todayIcon.textContent = 'calendar_today'
     const todayContainer = document.createElement('div')
     todayContainer.classList.add('today-list')  
-    const todayCreator = document.createElement('div') 
-    todayCreator.classList.add('today-creator') 
-    const todayForm = document.createElement('form')
-    todayForm.classList.add('todayForm')
-    const todayInput = document.createElement('input')
-    todayInput.classList.add('today-input')
-    todayInput.style.display = 'none'
+    const addTodayIcon = document.createElement('span')
+    addTodayIcon.classList.add('material-symbols-outlined')
+    addTodayIcon.textContent = 'add_card'
 
     //Create Dom for Week
     const weekContent = document.createElement('div')
@@ -51,7 +53,9 @@ const sidebar = () => {
     weekForm.classList.add('weekForm')
     const weekInput = document.createElement('input')
     weekInput.classList.add('week-input')
-    weekInput.style.display = 'none'
+    const addWeekIcon = document.createElement('span')
+    addWeekIcon.classList.add('material-symbols-outlined')
+    addWeekIcon.textContent = 'add_card'
     
 
     //Create Dom for Projects
@@ -73,24 +77,24 @@ const sidebar = () => {
     document.body.appendChild(main);
     main.appendChild(sidebar);
     sidebar.appendChild(dayContent);
+    sidebar.appendChild(addDay)
     sidebar.appendChild(weekCon);
+    sidebar.appendChild(addWeek)
     sidebar.appendChild(projectContent);
     sidebar.appendChild(addContent)
     dayContent.appendChild(todayContent)
     todayContent.appendChild(todayIcon);
     todayContent.appendChild(today);
+    addDay.appendChild(addTodayIcon)
     today.appendChild(todayContainer)
-    today.appendChild(todayCreator)
-    todayCreator.appendChild(todayForm)
-    todayForm.appendChild(todayInput)
-    
+    today.appendChild(todaylist)
     weekCon.appendChild(weekContent)
     weekContent.appendChild(weekIcon);
     weekContent.appendChild(week)
+    addWeek.appendChild(addWeekIcon)
     week.appendChild(weekContainer)
     week.appendChild(weekCreator)
-    weekCreator.appendChild(weekForm)
-    weekForm.appendChild(weekInput)
+    
     
     projects.appendChild(projectLists)
     projectContent.appendChild(projects);

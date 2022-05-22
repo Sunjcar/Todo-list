@@ -1,6 +1,6 @@
 import header from './header'
 import sidebar from './sidebar'
-import {projectTask,modal} from './projects'
+import {projectTask,modal,todayTask} from './projects'
 import createProject from './createProject'
 
 

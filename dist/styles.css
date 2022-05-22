@@ -50,7 +50,7 @@ body{
     gap: 1rem;
 }
 
-.today, .week, .projects{
+.today, .week, .projects, .project-name{
     font-family: 'Libre Baskerville', serif;
     font-size:1.6rem;
     display:flex;
@@ -83,7 +83,7 @@ body{
     align-items: center;
 }
 
-.add-content{
+.add-content, .add-today{
     display:flex;
     align-items: center;
     gap:1rem;
@@ -137,7 +137,13 @@ p{
     border-radius: 1rem;
 }
 
-
+#Today, #week{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding:20px;
+}
 .modal {
     display: none;
     position: fixed; 
@@ -151,10 +157,12 @@ p{
   }
 
 .modal-content {
-    background-color: #fefefe;
+   
     margin: 15% auto; 
-    padding: 20px;
-    border: 1px solid #888;
+    width: 11rem;
+}
+#title {
+    padding:20px;
     border-radius: 10px;
     width: 11rem;
 }
@@ -169,10 +177,6 @@ button{
     padding:10px;
     border-radius: .7rem;
     background-color: lightpink;
-}
-
-.addBtn{
-    background-color: lightgreen;
 }
 
 .cancelBtn{

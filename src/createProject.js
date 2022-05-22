@@ -4,6 +4,8 @@ const createProject = () => {
     const newProjectForm = document.querySelector('.form')
     const newProjectInput = document.querySelector('.title')
     const modal = document.getElementById('modal')
+    const modalOne = document.getElementById('modal1')
+    const modalTwo = document.getElementById('modal2')
     const listDisplayContainer = document.querySelector('.view-project')
     const listTitleElement = document.querySelector('.project-name')
     const listCountElement = document.querySelector('.task-count')
@@ -13,17 +15,18 @@ const createProject = () => {
     const newTaskInput = document.querySelector('.new-task')
     const addContent = document.querySelector('.add-content')
     const clearCompleteTasksButton = document.querySelector('.delete')
-    const todayContent = document.querySelector('.today-content')
     const todayContainer = document.querySelector('.today-list')
     const newTodayForm = document.querySelector('.todayForm')
     const newTodayInput = document.querySelector('.today-input')
-    const weekContent = document.querySelector('.week-content')
     const weekContainer = document.querySelector('.week-list')
     const newWeekForm = document.querySelector('.weekForm')
     const newWeekInput = document.querySelector('.week-input')
+    const addToday = document.querySelector('.add-today')
+    const addWeek = document.querySelector('.add-week')
 
     clearCompleteTasksButton.style.display = 'none'
     newTaskInput.style.display = 'none'
+    listTitleElement.textContent = 'Tasks'
 
     //Saves Data to local storage
     const LOCAL_STORAGE_LIST_KEY = 'task.lists'
@@ -36,11 +39,6 @@ const createProject = () => {
     let weeklists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_WEEK_LIST_KEY)) || []
 
     //Bind Events
-    todayContent.addEventListener('click', () => {
-        newTodayInput.style.display = 'inline'
-        newWeekInput.style.display = 'none'
-    })
-
     todayContainer.addEventListener('click', e => {
         if (e.target.tagName.toLowerCase() === 'li') {
         selectedListId = e.target.dataset.listId
@@ -48,11 +46,12 @@ const createProject = () => {
         }
     })
 
-    weekContent.addEventListener('click', () => {
-        newWeekInput.style.display = 'inline'
-        newTodayInput.style.display = 'none'
+    weekContainer.addEventListener('click', e => {
+        if (e.target.tagName.toLowerCase() === 'li') {
+        selectedListId = e.target.dataset.listId
+        saveAndRenderWeek()
+        }
     })
-
 
     ProjectContainer.addEventListener('click', e => {
         if (e.target.tagName.toLowerCase() === 'li') {
@@ -72,14 +71,14 @@ const createProject = () => {
     })
     
     clearCompleteTasksButton.addEventListener('click', e => {
-        const selectedList = lists.find(list => list.id === selectedListId)
+        const selectedList = lists.find(list => list.id === selectedListId) || todaylists.find(list => list.id === selectedListId)
         selectedList.tasks = selectedList.tasks.filter(task => !task.complete)
-        saveAndRender()
+        saveAndRender() || saveAndRenderToday()
     })
     
     newTodayForm.addEventListener('submit', e => {
         e.preventDefault()
-        newTodayInput.style.display = 'none'
+        modalOne.style.display = 'none'
         const listName = newTodayInput.value
         if (listName == null || listName === '') return
         const list = createList(listName)
@@ -90,7 +89,7 @@ const createProject = () => {
 
     newWeekForm.addEventListener('submit', e => {
         e.preventDefault()
-        newWeekInput.style.display = 'none'
+        modalTwo.style.display = 'none'
         const listName = newWeekInput.value
         if (listName == null || listName === '') return
         const list = createList(listName)
@@ -118,9 +117,9 @@ const createProject = () => {
         if (taskName == null || taskName === '') return
         const task = createTask(taskName)
         newTaskInput.value = null
-        const selectedList = lists.find(list => list.id === selectedListId)
+        const selectedList = lists.find(list => list.id === selectedListId) || todaylists.find(list => list.id === selectedListId)
         selectedList.tasks.push(task)
-        saveAndRender()
+        saveAndRender() || saveAndRenderToday()
     })
     
     //Displays Modal
@@ -128,6 +127,18 @@ const createProject = () => {
         console.log('hello')
         modal.style.display = 'block'
       })
+
+    addToday.addEventListener('click', () => {
+        modalOne.style.display = 'block'
+        newProjectInput.style.display = 'none'
+        newTodayInput.style.display = 'inline'
+        newWeekInput.style.display = 'none'
+    })
+
+    addWeek.addEventListener('click', () => {
+        modal.style.display = 'block'
+    })
+
     //Creates Unique ID and Task array for tasks
     function createList(name) {
         return { id: Date.now().toString(), name: name, tasks: [] }
@@ -168,8 +179,8 @@ const createProject = () => {
         listTitleElement.textContent = 'Tasks'
         newTaskInput.style.display = 'none'
         clearCompleteTasksButton.style.display = 'none'
-        } else {
-        listDisplayContainer.style.display = ''
+        } else { 
+        
         listTitleElement.innerText = selectedList.name
         newTaskInput.style.display = 'inline'
         clearCompleteTasksButton.style.display = 'inline'
@@ -272,13 +283,14 @@ const createProject = () => {
             if (todaylists.length > 1) {
             todaylists.splice(todaylists.indexOf(list), 1);
             saveAndRenderToday()
+            modalOne.style.display = 'none'
             newTaskInput.style.display = 'none'
             clearCompleteTasksButton.style.display = 'none'
             tasksContainer.style.display = 'none'
             listCountElement.style.display = 'none'
         } else if (todaylists.length === 1) {
             todaylists = [];
-            todayContainer.textContent = ''
+            modalOne.style.display = 'none'
             listTitleElement.textContent = 'Tasks'
             newTaskInput.style.display = 'none'
             clearCompleteTasksButton.style.display = 'none'
@@ -368,14 +380,15 @@ const createProject = () => {
         remove.textContent = 'delete'
         left.appendChild(remove)
         remove.addEventListener('click', e => {
-            if (lists.length > 1) {
+            if (lists.length >= 1) {
             lists.splice(lists.indexOf(list), 1);
             saveAndRender()
+            listDisplayContainer.textContent = ''
             newTaskInput.style.display = 'none'
             clearCompleteTasksButton.style.display = 'none'
             tasksContainer.style.display = 'none'
             listCountElement.style.display = 'none'
-        } else if (lists.length === 1) {
+        } else if (lists.length === null) {
             lists = [];
             ProjectContainer.textContent = ''
             listTitleElement.textContent = 'Tasks'
