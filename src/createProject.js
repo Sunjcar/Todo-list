@@ -23,6 +23,8 @@ const createProject = () => {
     const newWeekInput = document.querySelector('.week-input')
     const addToday = document.querySelector('.add-today')
     const addWeek = document.querySelector('.add-week')
+    const todayContent = document.querySelector('.today-content')
+    const weekContent = document.querySelector('.week-content')
 
     clearCompleteTasksButton.style.display = 'none'
     newTaskInput.style.display = 'none'
@@ -136,11 +138,20 @@ const createProject = () => {
 
     addWeek.addEventListener('click', () => {
         modalTwo.style.display = 'block'
- 
+        
+    })
+
+    //Displays current lists
+    todayContent.addEventListener('click', () => {
+        renderToday();
+    })
+
+    weekContent.addEventListener('click', () => {
+        renderWeek();
     })
 
     //Creates Unique ID and Task array for tasks
-    function createList(name) {
+    function createList(name) { const todayContent = document.querySelector('.to')
         return { id: Date.now().toString(), name: name, tasks: [] }
     }
     
@@ -164,9 +175,9 @@ const createProject = () => {
     
     function save() {
         localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists))
-        localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId)
         localStorage.setItem(LOCAL_STORAGE_TODAY_LIST_KEY, JSON.stringify(todaylists))
         localStorage.setItem(LOCAL_STORAGE_WEEK_LIST_KEY, JSON.stringify(weeklists))
+        localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId)
     }
 
     function renderToday (){
@@ -180,7 +191,7 @@ const createProject = () => {
         newTaskInput.style.display = 'none'
         clearCompleteTasksButton.style.display = 'none'
         } else { 
-        
+        listDisplayContainer.style.display = ''
         listTitleElement.innerText = selectedList.name
         newTaskInput.style.display = 'inline'
         clearCompleteTasksButton.style.display = 'inline'
@@ -230,7 +241,7 @@ const createProject = () => {
         clearElement(tasksContainer)
         renderTasks(selectedList)
         }
-    }
+    }render();
     
     function renderTasks(selectedList) {
         selectedList.tasks.forEach(task => {
@@ -283,14 +294,14 @@ const createProject = () => {
             if (todaylists.length > 1) {
             todaylists.splice(todaylists.indexOf(list), 1);
             saveAndRenderToday()
-            modalOne.style.display = 'none'
+            listDisplayContainer.text = ''
             newTaskInput.style.display = 'none'
             clearCompleteTasksButton.style.display = 'none'
             tasksContainer.style.display = 'none'
             listCountElement.style.display = 'none'
         } else if (todaylists.length === 1) {
             todaylists = [];
-            modalOne.style.display = 'none'
+            todayContainer.text = ''
             listTitleElement.textContent = 'Tasks'
             newTaskInput.style.display = 'none'
             clearCompleteTasksButton.style.display = 'none'
@@ -333,6 +344,7 @@ const createProject = () => {
             if (weeklists.length > 1) {
             weeklists.splice(weeklists.indexOf(list), 1);
             saveAndRenderWeek()
+            listDisplayContainer.textContent = ''
             newTaskInput.style.display = 'none'
             clearCompleteTasksButton.style.display = 'none'
             tasksContainer.style.display = 'none'
@@ -420,8 +432,7 @@ const createProject = () => {
         element.removeChild(element.firstChild)
         }
     }
-    
-    render() 
+   render();
 }
 
 export default createProject
