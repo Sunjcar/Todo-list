@@ -117,7 +117,8 @@ const createProject = () => {
         if (taskName == null || taskName === '') return
         const task = createTask(taskName)
         newTaskInput.value = null
-        const selectedList = lists.find(list => list.id === selectedListId) || todaylists.find(list => list.id === selectedListId)
+        const selectedList = lists.find(list => list.id === selectedListId) 
+        || todaylists.find(list => list.id === selectedListId) || weeklists.find(list => list.id === selectedListId);
         selectedList.tasks.push(task)
         saveAndRender() || saveAndRenderToday()
     })
@@ -130,13 +131,12 @@ const createProject = () => {
 
     addToday.addEventListener('click', () => {
         modalOne.style.display = 'block'
-        newProjectInput.style.display = 'none'
-        newTodayInput.style.display = 'inline'
-        newWeekInput.style.display = 'none'
+     
     })
 
     addWeek.addEventListener('click', () => {
-        modal.style.display = 'block'
+        modalTwo.style.display = 'block'
+ 
     })
 
     //Creates Unique ID and Task array for tasks
