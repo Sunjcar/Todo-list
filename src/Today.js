@@ -13,6 +13,8 @@ const createToday = () => {
     const newTodayForm = document.querySelector('.todayForm')
     const newTodayInput = document.querySelector('.today-input')
     const addToday = document.querySelector('.add-today')
+    const projectTask = document.querySelector('.form')
+    const today = document.querySelector('.today')
 
     listTitleElement.textContent = 'Tasks'
     //Saves Data to local storage
@@ -22,12 +24,13 @@ const createToday = () => {
     let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY)
 
     //Bind Events
+
     todayContainer.addEventListener('click', e => {
         if (e.target.tagName.toLowerCase() === 'li') {
         selectedListId = e.target.dataset.listId
-        clearCompleteTasksButton.style.display = 'block'
+        projectTask.style.display = 'none'
         saveAndRenderToday()
-        }
+    }
     })
 
     tasksContainer.addEventListener('click', e => {
@@ -54,6 +57,7 @@ const createToday = () => {
         newTodayInput.value = null
         todaylists.push(list)
         saveAndRenderToday()
+        projectTask.style.display = 'none'
     })
 
     newTaskForm.addEventListener('submit', e => {
