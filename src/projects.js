@@ -69,7 +69,7 @@
         div.classList.add('view-project')
         const tasksContainer = document.createElement('div');
         tasksContainer.classList.add('task-container')
-        const name = document.createElement('P')
+        const name = document.createElement('p')
         name.classList.add('project-name')
         const taskBody = document.createElement('div')
         taskBody.classList.add('task-body')
@@ -82,10 +82,26 @@
         //Creates container and form input for tasks
         const taskCreator = document.createElement('div')
         taskCreator.classList.add('task-creator')
+        //Project Tasks
         const taskForm = document.createElement('form')
         taskForm.classList.add('task-form')
         const taskInput = document.createElement('input')
         taskInput.classList.add('new-task')
+        taskInput.style.display = 'none'
+
+        //Today Tasks
+        const todayTask = document.createElement('form')
+        todayTask.classList.add('today-form')
+        const todayInput = document.createElement('input')
+        todayInput.classList.add('today-task')
+        todayInput.style.display = 'none'
+
+        //Week Tasks
+        const weekTask = document.createElement('form')
+        weekTask.classList.add('week-form')
+        const weekInput = document.createElement('input')
+        weekInput.classList.add('week-task')
+        weekInput.style.display = 'none'
 
         main.appendChild(div);
         div.appendChild(name)
@@ -95,7 +111,13 @@
         taskBody.appendChild(taskCreator)
         taskBody.appendChild(deleteBtn)
         taskCreator.appendChild(taskForm)
+        taskCreator.appendChild(todayTask)
+        taskCreator.appendChild(weekTask)
         taskForm.appendChild(taskInput)
+        todayTask.appendChild(todayInput)
+        weekTask.appendChild(weekInput)
+
+
         };
 
 

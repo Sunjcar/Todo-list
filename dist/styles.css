@@ -83,7 +83,7 @@ body{
     align-items: center;
 }
 
-.add-content, .add-today{
+.add-content, .add-today, .add-week{
     display:flex;
     align-items: center;
     gap:1rem;
@@ -186,7 +186,7 @@ button{
 button:hover{
     filter:brightness(1.3);
 }
-.task-lists:hover, .add-content:hover, .lists:hover {
+.task-lists:hover, .add-content:hover, .lists:hover, .today-content:hover, .week-content:hover {
     background-color: #e2e8f0;
     
 }
